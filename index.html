@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calendario de Eventos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type=”image/png” href="img/calendar.png">
+	<link rel="stylesheet" href="css/estilos.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+	<div class="contenedor">
+
+        <div class="intro">
+            <a href="#intro-calendario" class="abrir">save the date</a>
+        </div>
+
+        <div id="intro-calendario" class="pagina">
+            <div class="bloque">
+                <div class="calendario">
+                    <div class="mes">
+                        <div class="anterior" id="mes-anterior">
+                            <span>&#10094;</span>
+                        </div>
+
+                        <div>
+                            <h2 id="mes"></h2>
+                            <h2 id="anyo"></h2>
+                        </div>
+
+                        <div class="siguiente" id="mes-siguiente">
+                            <span>&#10095;</span>
+                        </div>
+                    </div>
+
+                    <div class="semana">
+                        <div class="item">Lun</div>
+                        <div class="item">Mar</div>
+                        <div class="item">Mié</div>
+                        <div class="item">Jue</div>
+                        <div class="item">Vie</div>
+                        <div class="item">Sáb</div>
+                        <div class="item">Dom</div>
+                    </div>
+
+                    <div class="fechas" id="dias"></div>
+
+                    <a href="#" class="cerrar"></a>
+                </div>
+            </div>
+
+            <div id="tvesModal" class="modalContainer">
+                <div class="modal-content">
+                    <p class="textoModal">Modal</p>
+                </div>
+            </div>
+
+        </div> 
+    </div>
+
+<script src="js/ajax.js"></script>    
+
+<script src="js/funciones.js"></script>
+	
+</body>
+</html>

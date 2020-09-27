@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #D59F35;
+}
+
+.fechas div a {
+    display: block;
+    width: auto;
+    height: auto;
+    background-color: #AE542F;
+    color: #FFF;
+    border-radius: 2em;
+    padding: 10px 15px;
+    margin: -15px;
+
+}
+
+.contenedor {
+    background: url(../img/index.png) no-repeat center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.intro {
+    max-width: 1200px;
+    padding-left: 1rem;
+    padding-right: 1rem;  
+    margin: auto;
+}
+
+.abrir {
+    color: #222830;
+    text-transform: uppercase;
+    padding: 20px 40px;
+    border: 2px solid;
+    letter-spacing: 5.2px;
+    word-spacing: 10px;
+}
+
+.cerrar {
+    width: 2rem;
+    height: 2rem;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+}
+
+.pagina {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    position: fixed;
+}
+
+
+.pagina:before {
+    content: "";
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #C18D73;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    will-change: height, top;
+    animation: open-animation .8s cubic-bezier(0.83, 0.04, 0, 1.16) .6s both;
+}
+
+.pagina:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: #C18D73;
+    will-change: width, opacity;
+    animation: line-animation .8s cubic-bezier(0.83, 0.04, 0, 1.16) both;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+}
+
+.bloque {
+    padding: 100px;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    overflow: auto;
+    animation: fade .5s ease-out 1.3s both;
+}
+
+.calendario {
+    margin: auto;
+    width: 700px;
+    height: 485px;
+    background-color: #F1F1F0;
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 30px 30px;
+    text-align: center;
+    background-color: #f1f1f0;
+    color: #222830;
+}
+
+
+.semana {
+    background-color: #26424A;
+    color: #FFF;
+    padding: 7px 0;
+    display: flex;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.fechas {
+    font-weight: 300;
+    padding: 30px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.semana div, .fechas div {
+    text-align: center;
+    width: 14.28%;
+}
+
+.fechas div {
+    padding: 10px 40px;
+    margin-bottom: 10px;
+    transition: all 0.4s;
+}
+
+.fecha-anterior {
+    color: #999;
+}
+
+.fecha-posterior {
+    color: #999;
+}
+
+.fechas div:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #222830;
+}
+
+.anterior, .siguiente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 23px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.anterior:hover, .siguiente:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#intro-calendario:target {
+    display: inline-block;
+}
+
+#mes, #anyo {
+    font-size: 30px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 15px;
+}
+
+
+/*MODAL*/
+
+.modalContainer {
+      display: none; 
+      position: fixed; 
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .modalContainer .modal-content {
+      background-color: #F1F1F0;
+      margin: auto;
+      padding: 2em;
+      border: 1px solid lightgray;
+      border-top: 15px solid #26424A;
+      width: 45%;
+      text-align: center;
+    }
+
+    .visible {
+      display: flex;
+    }
+
+
+/* keyframes animaciones */ 
+
+@keyframes line-animation {
+
+    0% {
+    width: 0;
+    opacity: 1;
+  }
+
+  99% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    width: 100%;
+    opacity: 0;
+  }  
+}
+
+
+
+@keyframes open-animation {
+
+  0%{
+    height: 0;
+    top: 50%;
+  }
+
+  100%{
+    height: 100vh;
+    top: 0;
+  }
+}
+
+
+
+@keyframes fade {
+
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+/* responsive */ 
+
+@media only all and (min-width: 780px) and (max-width: 1024px) {
+
+    .bloque {
+        height: auto;
+        padding: 20% 0%; 
+    }
+
+    .calendario {
+        width: 60%;
+    }     
+
+}
+
+@media only all and (min-width: 480px) and (max-width: 780px) {
+
+    .contenedor {
+        background: url(../img/movil.png) no-repeat center;
+        background-size: cover;
+    }
+
+    .bloque {
+        height: 100%;
+        padding: 29% 9%;
+    }
+
+    .calendario {
+        width: 100%;
+        height: 100%;
+    }
+
+    .fechas {
+        padding: 5px;
+    }
+
+    .fechas div {
+        padding: 20px 40px;
+    }
+
+    .abrir {
+        padding: 30px 40px;
+        font-size: 1.2em;
+    } 
+
+}
+
+@media only all and (max-width: 480px) {
+
+    .contenedor {
+        background: url(../img/movil.png) no-repeat center;
+        background-size: cover;
+    }
+
+    .bloque {
+        height: 100%;
+        padding: 27% 2%;
+    }
+
+    .calendario {
+        width: 100%;
+        height: 100%;
+    } 
+
+    .mes {
+        padding: 5px 10px;
+    } 
+
+    .fecha {
+        padding: 5px 0;
+    }
+
+    .fechas div {
+    padding: 15px;
+    margin-bottom: 10px;
+    }
+
+   .anterior, .siguiente {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+   }
+
+   .semana {
+    font-size: 1em;
+   } 
+
+    #mes, #anyo {
+    font-size: 25px;
+    padding: 10px;
+    }
+
+    .modalContainer .modal-content{
+        width: 60%;
+    }
+
+}  
+
+
+
+
+
+
+
+
+
